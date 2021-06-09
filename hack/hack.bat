@@ -36,6 +36,6 @@ start AdvancedRun64.exe /EXEFilename "dis.bat" /RunAs 8 /Run
 msg * start
 start hidden.vbs
 :loop
-if not exist results timeout 14
-start AdvancedRun64.exe /EXEFilename "undis.bat" /RunAs 8 /Run
+::if not exist results timeout 14
+::start AdvancedRun64.exe /EXEFilename "undis.bat" /RunAs 8 /Run
 exit
